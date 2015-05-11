@@ -2,7 +2,7 @@
 //  CycleScrollViewDemoTests.m
 //  CycleScrollViewDemoTests
 //
-//  Created by tusu on 15/5/11.
+//  Created by strivingboy on 15/5/11.
 //
 //
 

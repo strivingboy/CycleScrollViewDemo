@@ -14,6 +14,8 @@
 		D3DADFD31B00BFAF006925F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3DADFD21B00BFAF006925F8 /* Images.xcassets */; };
 		D3DADFD61B00BFAF006925F8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3DADFD41B00BFAF006925F8 /* LaunchScreen.xib */; };
 		D3DADFE21B00BFAF006925F8 /* CycleScrollViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DADFE11B00BFAF006925F8 /* CycleScrollViewDemoTests.m */; };
+		D3DADFEE1B00C070006925F8 /* CycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DADFED1B00C070006925F8 /* CycleScrollView.m */; };
+		D3DADFF11B00C304006925F8 /* InfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DADFF01B00C304006925F8 /* InfoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		D3DADFDB1B00BFAF006925F8 /* CycleScrollViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CycleScrollViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DADFE01B00BFAF006925F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3DADFE11B00BFAF006925F8 /* CycleScrollViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CycleScrollViewDemoTests.m; sourceTree = "<group>"; };
+		D3DADFEC1B00C070006925F8 /* CycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CycleScrollView.h; sourceTree = "<group>"; };
+		D3DADFED1B00C070006925F8 /* CycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CycleScrollView.m; sourceTree = "<group>"; };
+		D3DADFEF1B00C304006925F8 /* InfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoView.h; sourceTree = "<group>"; };
+		D3DADFF01B00C304006925F8 /* InfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +87,13 @@
 		D3DADFC41B00BFAF006925F8 /* CycleScrollViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D3DADFEB1B00C03C006925F8 /* CycleScrollView */,
 				D3DADFC91B00BFAF006925F8 /* AppDelegate.h */,
 				D3DADFCA1B00BFAF006925F8 /* AppDelegate.m */,
 				D3DADFCC1B00BFAF006925F8 /* ViewController.h */,
 				D3DADFCD1B00BFAF006925F8 /* ViewController.m */,
+				D3DADFEF1B00C304006925F8 /* InfoView.h */,
+				D3DADFF01B00C304006925F8 /* InfoView.m */,
 				D3DADFCF1B00BFAF006925F8 /* Main.storyboard */,
 				D3DADFD21B00BFAF006925F8 /* Images.xcassets */,
 				D3DADFD41B00BFAF006925F8 /* LaunchScreen.xib */,
@@ -117,6 +126,15 @@
 				D3DADFE01B00BFAF006925F8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3DADFEB1B00C03C006925F8 /* CycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D3DADFEC1B00C070006925F8 /* CycleScrollView.h */,
+				D3DADFED1B00C070006925F8 /* CycleScrollView.m */,
+			);
+			name = CycleScrollView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +239,8 @@
 				D3DADFCE1B00BFAF006925F8 /* ViewController.m in Sources */,
 				D3DADFCB1B00BFAF006925F8 /* AppDelegate.m in Sources */,
 				D3DADFC81B00BFAF006925F8 /* main.m in Sources */,
+				D3DADFF11B00C304006925F8 /* InfoView.m in Sources */,
+				D3DADFEE1B00C070006925F8 /* CycleScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -335,7 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -347,6 +367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CycleScrollViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -357,6 +378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CycleScrollViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
