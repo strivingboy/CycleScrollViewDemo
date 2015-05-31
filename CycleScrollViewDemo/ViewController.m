@@ -40,6 +40,7 @@
         [weakSelf getPageViewData:view atIndex:index];
     };
     [self.view addSubview:scrollView];
+    [_scrollView switchPageToIndex:0];
 }
 
 - (void)switchToIndex:(NSInteger)index
