@@ -16,3 +16,7 @@ ios 循环滚动 demo
 	
 	// 当前显示第几页
 	-(NSInteger)currentPageIndex;
+
+添加顶部滚动视图，效果如下
+
+![百度](scroll.gif)
