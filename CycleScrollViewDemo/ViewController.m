@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "RollScrollView.h"
 #import "CycleScrollView.h"
 #import "InfoView.h"
 
 @interface ViewController ()
-@property (nonatomic) CycleScrollView *scrollView;
+@property (nonatomic) RollScrollView *rollScrollView;
+@property (nonatomic) CycleScrollView *cycleScrollView;
 @property (nonatomic) NSArray *dataModel;
 @end
 
@@ -20,32 +22,60 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initDataModel];
+    [self addRollScrollView];
     [self addCycleScrollView];
+}
+
+- (void)initDataModel
+{
+     _dataModel = @[@"first page", @"second page", @"third page"];
+}
+
+- (void)addRollScrollView
+{
+    CGRect frame = CGRectZero;
+    frame.size.width = [UIScreen mainScreen].bounds.size.width;
+    frame.size.height = 44.f;
+    frame.origin.y = 20.f;
+    RollScrollView *scrollView = [[RollScrollView alloc] initWithFrame:frame
+                                                          topTitles:_dataModel];
+    _rollScrollView = scrollView;
+    __weak typeof (self) weakSelf = self;
+    _rollScrollView.selectedTabIndex = ^(NSInteger index) {
+        [weakSelf switchPageViewToIndex:index];
+    };
+    [self.view addSubview:_rollScrollView];
 }
 
 - (void)addCycleScrollView
 {
-    _dataModel = @[@"first page", @"second page", @"third page", @"fourth page", @"fifth page"];
-    CycleScrollView *scrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0.f, 0.f,
+   
+    CycleScrollView *scrollView = [[CycleScrollView alloc] initWithFrame:CGRectMake(0.f, 64.f,
                                                                                    self.view.frame.size.width,
                                                                                    self.view.frame.size.height)
                                                          pageViewNumber:_dataModel.count
                                                           PageViewClass:[InfoView class]];
-    _scrollView = scrollView;
+    _cycleScrollView = scrollView;
     __weak typeof (self) weakSelf = self;
-    _scrollView.scrolledToPageAtIndex = ^(NSInteger index) {
+    _cycleScrollView.scrolledToPageAtIndex = ^(NSInteger index) {
         [weakSelf switchToIndex:index];
     };
-    _scrollView.pageViewDataAtIndex = ^(UIView *view, NSInteger index){
+    _cycleScrollView.pageViewDataAtIndex = ^(UIView *view, NSInteger index){
         [weakSelf getPageViewData:view atIndex:index];
     };
     [self.view addSubview:scrollView];
-    [_scrollView switchPageToIndex:0];
+    [_cycleScrollView switchPageToIndex:0];
+}
+
+- (void)switchPageViewToIndex:(NSInteger)index
+{
+    [_cycleScrollView switchPageToIndex:index];
 }
 
 - (void)switchToIndex:(NSInteger)index
 {
-    NSLog(@"CurrentPage index: %ld", (long)index);
+    [_rollScrollView swithTabToIndex:index];
 }
 
 - (void)getPageViewData:(UIView *)view atIndex:(NSInteger)index

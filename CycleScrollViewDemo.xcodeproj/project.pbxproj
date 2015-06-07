@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D3374B261B2486A10055BD07 /* RollScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3374B251B2486A10055BD07 /* RollScrollView.m */; };
 		D3DADFC81B00BFAF006925F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DADFC71B00BFAF006925F8 /* main.m */; };
 		D3DADFCB1B00BFAF006925F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DADFCA1B00BFAF006925F8 /* AppDelegate.m */; };
 		D3DADFCE1B00BFAF006925F8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DADFCD1B00BFAF006925F8 /* ViewController.m */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D3374B241B2486A10055BD07 /* RollScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollScrollView.h; sourceTree = "<group>"; };
+		D3374B251B2486A10055BD07 /* RollScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollScrollView.m; sourceTree = "<group>"; };
 		D3DADFC21B00BFAF006925F8 /* CycleScrollViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CycleScrollViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DADFC61B00BFAF006925F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3DADFC71B00BFAF006925F8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 			children = (
 				D3DADFEC1B00C070006925F8 /* CycleScrollView.h */,
 				D3DADFED1B00C070006925F8 /* CycleScrollView.m */,
+				D3374B241B2486A10055BD07 /* RollScrollView.h */,
+				D3374B251B2486A10055BD07 /* RollScrollView.m */,
 			);
 			name = CycleScrollView;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 			files = (
 				D3DADFCE1B00BFAF006925F8 /* ViewController.m in Sources */,
 				D3DADFCB1B00BFAF006925F8 /* AppDelegate.m in Sources */,
+				D3374B261B2486A10055BD07 /* RollScrollView.m in Sources */,
 				D3DADFC81B00BFAF006925F8 /* main.m in Sources */,
 				D3DADFF11B00C304006925F8 /* InfoView.m in Sources */,
 				D3DADFEE1B00C070006925F8 /* CycleScrollView.m in Sources */,
@@ -437,6 +443,7 @@
 				D3DADFE71B00BFAF006925F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3DADFE81B00BFAF006925F8 /* Build configuration list for PBXNativeTarget "CycleScrollViewDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -445,6 +452,7 @@
 				D3DADFEA1B00BFAF006925F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
