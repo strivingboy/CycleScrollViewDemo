@@ -19,4 +19,4 @@ ios 循环滚动 demo
 
 添加顶部滚动视图，效果如下
 
-![百度](scroll.gif)
+![deomo git](scroll.gif =320x568)
