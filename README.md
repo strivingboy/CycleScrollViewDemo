@@ -19,4 +19,6 @@ ios 循环滚动 demo
 
 添加顶部滚动视图，效果如下
 
-![deomo git](scroll.gif =320x568)
+<div align=center>
+<img src="scroll.gif" width="320" height="568" alt="demo gif"/>
+</div>
