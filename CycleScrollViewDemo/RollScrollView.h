@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScrollDirection.h"
 
 @interface RollScrollView : UIScrollView
 
@@ -15,5 +16,7 @@
 - (instancetype)initWithFrame:(CGRect)frame topTitles:(NSArray *)titles;
 
 - (void)swithTabToIndex:(NSInteger)tabId;
+
+- (void)updateTabOffsetWithDirection:(ScrollDirection)direction withPercent:(CGFloat)percent atIndex:(NSInteger)tabId;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "RollScrollView.h"
+#import "UIColor+Extents.h"
 
 // Tab 分割线高度
 #define kTabSplitLineHeight 20
@@ -42,7 +43,7 @@
     if (self = [super initWithFrame:frame]) {
         _titlesArray = titles;
         self.delegate = self;
-        self.backgroundColor = [self colorFromHexString:kTabTitleBkColor];
+        self.backgroundColor = [UIColor colorFromHexString:kTabTitleBkColor];
         self.pagingEnabled = NO;
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
@@ -53,30 +54,6 @@
         return self;
     }
     return nil;
-}
-
-- (UIColor *)colorFromHexString:(NSString *)hexString
-{
-    NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
-    if([cleanString length] == 3) {
-        cleanString = [NSString stringWithFormat:@"%@%@%@%@%@%@",
-                       [cleanString substringWithRange:NSMakeRange(0, 1)],[cleanString substringWithRange:NSMakeRange(0, 1)],
-                       [cleanString substringWithRange:NSMakeRange(1, 1)],[cleanString substringWithRange:NSMakeRange(1, 1)],
-                       [cleanString substringWithRange:NSMakeRange(2, 1)],[cleanString substringWithRange:NSMakeRange(2, 1)]];
-    }
-    if([cleanString length] == 6) {
-        cleanString = [cleanString stringByAppendingString:@"ff"];
-    }
-    
-    unsigned int baseValue;
-    [[NSScanner scannerWithString:cleanString] scanHexInt:&baseValue];
-    
-    float red = ((baseValue >> 24) & 0xFF)/255.0f;
-    float green = ((baseValue >> 16) & 0xFF)/255.0f;
-    float blue = ((baseValue >> 8) & 0xFF)/255.0f;
-    float alpha = ((baseValue >> 0) & 0xFF)/255.0f;
-    
-    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
 - (void)dealloc
@@ -96,9 +73,9 @@
         }
         [button setTitle:title forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:kTabTitleFontSize];
-        [button setTitleColor:[self colorFromHexString:kTabTitleColorNormal]
+        [button setTitleColor:[UIColor colorFromHexString:kTabTitleColorNormal]
                      forState:UIControlStateNormal];
-        [button setTitleColor:[self colorFromHexString:kTabTitleColorSelected]
+        [button setTitleColor:[UIColor colorFromHexString:kTabTitleColorSelected]
                      forState:UIControlStateSelected];
         [button addTarget:self action:@selector(selectTabButton:)
          forControlEvents:UIControlEventTouchUpInside];
@@ -114,7 +91,7 @@
                                                                      (self.frame.size.height - kTabSplitLineHeight)/2,
                                                                      1,
                                                                      kTabSplitLineHeight)];
-        splitLine.backgroundColor = [self colorFromHexString:kTabTitleSplitLineColor];
+        splitLine.backgroundColor = [UIColor colorFromHexString:kTabTitleSplitLineColor];
         [self addSubview:splitLine];
     }
     
@@ -123,14 +100,14 @@
                                                                      self.frame.size.height - 2,
                                                                      [[_buttonWithArray objectAtIndex:0] floatValue],
                                                                      2)];
-    [_shadowImageView setImage:[UIImage imageNamed:@"home_tabbar_bottom"]];
+    [_shadowImageView setImage:[UIImage imageNamed:@"bottom_line"]];
     [self addSubview:_shadowImageView];
     
     _buttomLineView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                self.frame.size.height-1,
                                                                self.frame.size.width,
                                                                1)];
-    _buttomLineView.backgroundColor = [self colorFromHexString:kTabTitleSplitLineColor];
+    _buttomLineView.backgroundColor = [UIColor colorFromHexString:kTabTitleSplitLineColor];
     [self addSubview:_buttomLineView];
     
 }
@@ -185,17 +162,28 @@
 {
     [self unSelectLastButton];
     UIButton *button = (UIButton *)[self viewWithTag:tabId+kTabBaseId];
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        [_shadowImageView setFrame:CGRectMake(button.frame.origin.x,
-                                              self.frame.size.height - 2,
-                                              [[_buttonWithArray objectAtIndex:button.tag-kTabBaseId] floatValue],
-                                              2)];
-    } completion:^(BOOL finished) {
-        if (!button.selected) {
-            button.selected = YES;
-            _userSelectedId = button.tag;
-        }
-    }];
+    if (!button.selected) {
+        button.selected = YES;
+        _userSelectedId = button.tag;
+    }
 }
+
+- (void)updateTabOffsetWithDirection:(ScrollDirection)direction withPercent:(CGFloat)percent atIndex:(NSInteger)tabId
+{
+    UIButton *button = (UIButton *)[self viewWithTag:tabId+kTabBaseId];
+    CGFloat tabWith =  [[_buttonWithArray objectAtIndex:button.tag-kTabBaseId] floatValue];
+    CGFloat xPos = 0.f;
+    if (direction == ScrollDirectionLeft) {
+        xPos =  button.frame.origin.x + tabWith * percent;
+    } else if (direction == ScrollDirectionRight) {
+        xPos =  button.frame.origin.x - tabWith * (1- percent);
+    } else {
+        xPos =  button.frame.origin.x;
+    }
+    [_shadowImageView setFrame:CGRectMake(xPos,
+                                          self.frame.size.height - 2,
+                                          tabWith,
+                                          2)];
+}
+
 @end

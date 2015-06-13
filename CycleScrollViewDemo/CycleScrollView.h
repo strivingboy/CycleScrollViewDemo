@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScrollDirection.h"
 
 @interface CycleScrollView : UIView
 @property (nonatomic, copy) void(^scrolledToPageAtIndex)(NSInteger index);
 @property (nonatomic, copy) void(^pageViewDataAtIndex)(UIView *view, NSInteger index);
+@property (nonatomic, copy) void(^scrollingPercent)(ScrollDirection direction, CGFloat percent, NSInteger index);
 
 - (instancetype)initWithFrame:(CGRect)frame pageViewNumber:(NSInteger)number PageViewClass:(Class)cls;
 

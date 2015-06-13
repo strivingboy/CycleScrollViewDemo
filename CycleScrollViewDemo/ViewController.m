@@ -64,6 +64,9 @@
     _cycleScrollView.pageViewDataAtIndex = ^(UIView *view, NSInteger index){
         [weakSelf getPageViewData:view atIndex:index];
     };
+    _cycleScrollView.scrollingPercent = ^(ScrollDirection direction, CGFloat percent, NSInteger index) {
+        [weakSelf updateTabContentOffset:direction withPercent:percent atIndex:index];
+    };
     [self.view addSubview:scrollView];
     [_cycleScrollView switchPageToIndex:0];
 }
@@ -78,11 +81,24 @@
     [_rollScrollView swithTabToIndex:index];
 }
 
+- (void)updateTabContentOffset:(ScrollDirection)direction withPercent:(CGFloat)percent atIndex:(NSInteger)index
+{
+    [_rollScrollView updateTabOffsetWithDirection:direction withPercent:percent atIndex:index];
+}
+
 - (void)getPageViewData:(UIView *)view atIndex:(NSInteger)index
 {
     NSString *title = [_dataModel objectAtIndex:index];
     InfoView *infoView = (InfoView *)view;
     infoView.label.text = title;
+    if (index == 0) {
+        infoView.backgroundColor = [UIColor greenColor];
+    } else if (index == 1) {
+        infoView.backgroundColor = [UIColor redColor];
+    } else if (index ==  2) {
+        infoView.backgroundColor = [UIColor blueColor];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning

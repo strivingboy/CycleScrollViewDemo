@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D30016971B2C695E00339FE6 /* UIColor+Extents.m in Sources */ = {isa = PBXBuildFile; fileRef = D30016961B2C695E00339FE6 /* UIColor+Extents.m */; };
 		D3374B261B2486A10055BD07 /* RollScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3374B251B2486A10055BD07 /* RollScrollView.m */; };
 		D3DADFC81B00BFAF006925F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DADFC71B00BFAF006925F8 /* main.m */; };
 		D3DADFCB1B00BFAF006925F8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DADFCA1B00BFAF006925F8 /* AppDelegate.m */; };
@@ -30,6 +31,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D30016941B2C62A800339FE6 /* ScrollDirection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollDirection.h; sourceTree = "<group>"; };
+		D30016951B2C695E00339FE6 /* UIColor+Extents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extents.h"; sourceTree = "<group>"; };
+		D30016961B2C695E00339FE6 /* UIColor+Extents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extents.m"; sourceTree = "<group>"; };
 		D3374B241B2486A10055BD07 /* RollScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RollScrollView.h; sourceTree = "<group>"; };
 		D3374B251B2486A10055BD07 /* RollScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RollScrollView.m; sourceTree = "<group>"; };
 		D3DADFC21B00BFAF006925F8 /* CycleScrollViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CycleScrollViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +142,9 @@
 				D3DADFED1B00C070006925F8 /* CycleScrollView.m */,
 				D3374B241B2486A10055BD07 /* RollScrollView.h */,
 				D3374B251B2486A10055BD07 /* RollScrollView.m */,
+				D30016941B2C62A800339FE6 /* ScrollDirection.h */,
+				D30016951B2C695E00339FE6 /* UIColor+Extents.h */,
+				D30016961B2C695E00339FE6 /* UIColor+Extents.m */,
 			);
 			name = CycleScrollView;
 			sourceTree = "<group>";
@@ -246,6 +253,7 @@
 				D3374B261B2486A10055BD07 /* RollScrollView.m in Sources */,
 				D3DADFC81B00BFAF006925F8 /* main.m in Sources */,
 				D3DADFF11B00C304006925F8 /* InfoView.m in Sources */,
+				D30016971B2C695E00339FE6 /* UIColor+Extents.m in Sources */,
 				D3DADFEE1B00C070006925F8 /* CycleScrollView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

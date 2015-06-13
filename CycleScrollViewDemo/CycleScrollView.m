@@ -16,6 +16,8 @@
 @property (nonatomic) NSInteger totalPages;
 @property (nonatomic) NSInteger currentPage;
 @property (nonatomic) Class viewClass;
+
+@property (nonatomic) CGFloat lastOffset;
 @end
 
 @implementation CycleScrollView
@@ -28,6 +30,7 @@
         _totalPages = number;
         _currentPage = 0;
         _viewClass = cls;
+        _lastOffset = 0.f;
         [self initScrollView];
     }
     return self;
@@ -90,11 +93,34 @@
     [self loadViewsData];
 }
 
+- (ScrollDirection)scrollDirection
+{
+    if (_scrollView.contentOffset.x > _lastOffset) {
+        return ScrollDirectionLeft;
+    }
+    else if (_scrollView.contentOffset.x < _lastOffset) {
+        return ScrollDirectionRight;
+    }
+    return ScrollDirectionNone;
+}
+
 #pragma mark - UIScrollViewDelegate
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    _lastOffset = scrollView.contentOffset.x;
+}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    [self scrollDirection];
     CGFloat offsetX = scrollView.contentOffset.x;
+    if (self.scrollingPercent) {
+        self.scrollingPercent([self scrollDirection],
+                              ((NSInteger)offsetX % 320) / (CGFloat)_scrollView.frame.size.width,
+                              _currentPage);
+    }
     // 下一页
     if(offsetX >= (2 * self.frame.size.width)) {
         _currentPage = [self validPageValue:_currentPage+1];
@@ -107,6 +133,7 @@
         [self loadViewsData];
     }
 }
+
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
