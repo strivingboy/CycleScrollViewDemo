@@ -29,7 +29,7 @@
 
 - (void)initDataModel
 {
-     _dataModel = @[@"first page", @"second page", @"third page"];
+     _dataModel = @[@"first", @"second", @"third", @"forth", @"fifth"];
 }
 
 - (void)addRollScrollView
@@ -97,6 +97,10 @@
         infoView.backgroundColor = [UIColor redColor];
     } else if (index ==  2) {
         infoView.backgroundColor = [UIColor blueColor];
+    } else if (index ==  3) {
+        infoView.backgroundColor = [UIColor brownColor];
+    } else if (index ==  4) {
+        infoView.backgroundColor = [UIColor cyanColor];
     }
 
 }

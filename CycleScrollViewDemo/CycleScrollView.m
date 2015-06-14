@@ -89,8 +89,21 @@
 
 - (void)switchPageToIndex:(NSInteger)index
 {
+    NSInteger originIndex = _currentPage;
     _currentPage = index;
     [self loadViewsData];
+    if (index > originIndex) {
+        // 下一页
+        [_scrollView setContentOffset:CGPointZero];
+        [_scrollView scrollRectToVisible:CGRectMake(_scrollView.frame.size.width * 2, 0,
+                                                    _scrollView.frame.size.width,
+                                                    _scrollView.frame.size.height)
+                                animated:YES];
+    } else {
+        // 上一页
+        [_scrollView setContentOffset:CGPointMake(_scrollView.frame.size.width * 2, 0)];
+        [_scrollView scrollRectToVisible:CGRectMake(0, 0, _scrollView.frame.size.width, _scrollView.frame.size.height) animated:YES];
+    }
 }
 
 - (ScrollDirection)scrollDirection
@@ -114,7 +127,6 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self scrollDirection];
     CGFloat offsetX = scrollView.contentOffset.x;
     if (self.scrollingPercent) {
         self.scrollingPercent([self scrollDirection],

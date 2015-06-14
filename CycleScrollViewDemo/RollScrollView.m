@@ -34,6 +34,7 @@
 @property (nonatomic) NSMutableArray *buttonOriginXArray;
 @property (nonatomic) NSMutableArray *buttonWithArray;
 @property (nonatomic) UIView *buttomLineView;
+@property (nonatomic) CGFloat shadowImageLastXpos;    //选中阴影
 @end
 
 @implementation RollScrollView
@@ -48,6 +49,7 @@
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
         _userSelectedId = kTabBaseId;
+        _shadowImageLastXpos = 0.f;
         _buttonOriginXArray = [NSMutableArray array];
         _buttonWithArray = [NSMutableArray array];
         [self initWithTitleTabs];
@@ -114,7 +116,6 @@
 
 - (void)selectTabButton:(UIButton *)sender
 {
-    NSInteger tag = sender.tag - kTabBaseId;
     if (sender.tag != _userSelectedId) {
         UIButton *lastButton = (UIButton *)[self viewWithTag:_userSelectedId];
         lastButton.selected = NO;
@@ -122,22 +123,14 @@
     }
     if (!sender.selected) {
         sender.selected = YES;
-        [UIView animateWithDuration:0.2 animations:^{
-            [_shadowImageView setFrame:CGRectMake(sender.frame.origin.x,
-                                                  self.frame.size.height - 2,
-                                                  [[_buttonWithArray objectAtIndex:tag] floatValue],
-                                                  2)];
-        } completion:^(BOOL finished) {
-            if (self.selectedTabIndex) {
-                self.selectedTabIndex(sender.tag - kTabBaseId);
-            }
-        }];
+        if (self.selectedTabIndex) {
+            self.selectedTabIndex(sender.tag - kTabBaseId);
+        }
     }
 }
 
 - (void)adjustScrollViewContentX:(UIButton *)sender
 {
-    // 在此处理超过一屏幕tab页
     NSInteger tag = sender.tag - kTabBaseId;
     float originX = [[_buttonOriginXArray objectAtIndex:tag] floatValue];
     float width = [[_buttonWithArray objectAtIndex:tag] floatValue];
@@ -180,10 +173,12 @@
     } else {
         xPos =  button.frame.origin.x;
     }
+    NSLog(@"xpos: %lf, xx: %lf", xPos, _shadowImageLastXpos);
     [_shadowImageView setFrame:CGRectMake(xPos,
                                           self.frame.size.height - 2,
                                           tabWith,
                                           2)];
+    _shadowImageLastXpos = _shadowImageView.frame.origin.x;
 }
 
 @end
