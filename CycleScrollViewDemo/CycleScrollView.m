@@ -30,7 +30,7 @@
         _totalPages = number;
         _currentPage = 0;
         _viewClass = cls;
-        _lastOffset = 0.f;
+        _lastOffset = frame.size.width;
         [self initScrollView];
     }
     return self;
@@ -145,7 +145,6 @@
         [self loadViewsData];
     }
 }
-
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
