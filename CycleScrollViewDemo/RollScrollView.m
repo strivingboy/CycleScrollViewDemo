@@ -34,7 +34,6 @@
 @property (nonatomic) NSMutableArray *buttonOriginXArray;
 @property (nonatomic) NSMutableArray *buttonWithArray;
 @property (nonatomic) UIView *buttomLineView;
-@property (nonatomic) CGFloat shadowImageLastXpos;    //选中阴影
 @end
 
 @implementation RollScrollView
@@ -49,7 +48,6 @@
         self.showsHorizontalScrollIndicator = NO;
         self.showsVerticalScrollIndicator = NO;
         _userSelectedId = kTabBaseId;
-        _shadowImageLastXpos = 0.f;
         _buttonOriginXArray = [NSMutableArray array];
         _buttonWithArray = [NSMutableArray array];
         [self initWithTitleTabs];
@@ -173,12 +171,10 @@
     } else {
         xPos =  button.frame.origin.x;
     }
-    NSLog(@"xpos: %lf, xx: %lf", xPos, _shadowImageLastXpos);
     [_shadowImageView setFrame:CGRectMake(xPos,
                                           self.frame.size.height - 2,
                                           tabWith,
                                           2)];
-    _shadowImageLastXpos = _shadowImageView.frame.origin.x;
 }
 
 @end
